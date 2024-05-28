@@ -30,7 +30,7 @@ export const authSlice = createSlice({
             state.email = null;
             state.displayName = null;
             state.photoURL = null;
-            state.errorMessage = action.payload.errorMessage;
+            state.errorMessage = action.payload;
         },
         checkingCredentials: ( state ) => {
             state.status = loginStatusTypes.Checking;
