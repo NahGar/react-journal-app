@@ -1,4 +1,4 @@
-import { registerUserWithEmailPassword, signInWidthGoogle } from "../../firebase/providers";
+import { registerUserWithEmailPassword, signInWidthEmailAndPassword, signInWidthGoogle } from "../../firebase/providers";
 import { checkingCredentials, login, logout } from "./";
 
 export const checkingAuthentication = ( email, password ) => {

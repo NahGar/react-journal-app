@@ -25,7 +25,7 @@ export const LoginPage = () => {
     const onSubmit = async ( event ) => {
         event.preventDefault();
         
-        dispatch( startSignInWidthEmailAndPassword() );
+        dispatch( startSignInWidthEmailAndPassword( email, password ) );
     }
 
     const onGoogleSigIn = () => {
