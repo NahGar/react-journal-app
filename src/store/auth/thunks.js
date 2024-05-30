@@ -41,3 +41,21 @@ export const startCreatingUserWithEmailPassword = ({ email, password, displayNam
         }
     }
 }
+
+export const startSignInWidthEmailAndPassword = ({ email, password }) => {
+
+    return async( dispatch ) => {
+        
+        dispatch( checkingCredentials() );
+
+        const result = await signInWidthEmailAndPassword({ email, password });      
+        /*
+        if( result.ok ) { 
+            dispatch( login(result) );
+        }
+        else {
+            dispatch( logout(result.errorMessage) );
+        }
+        */
+    }
+}

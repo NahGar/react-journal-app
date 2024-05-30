@@ -5,7 +5,7 @@ import { Google } from "@mui/icons-material";
 import { Button, Grid, Link, TextField, Typography } from "@mui/material";
 import { AuthLayout } from '../layout/AuthLayout';
 import { useForm } from '../../hooks';
-import { checkingAuthentication, startGoogleSignIn } from '../../store/auth';
+import { startGoogleSignIn, startSignInWidthEmailAndPassword } from '../../store/auth';
 import { loginStatusTypes } from '../../types';
 
 
@@ -25,7 +25,7 @@ export const LoginPage = () => {
     const onSubmit = async ( event ) => {
         event.preventDefault();
         
-        dispatch( checkingAuthentication() );
+        dispatch( startSignInWidthEmailAndPassword() );
     }
 
     const onGoogleSigIn = () => {
