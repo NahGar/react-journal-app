@@ -8,7 +8,7 @@ const initialState = {
 export const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        status: loginStatusTypes.NotAuthenticated, // 'ckecking', 'authenticated' , 'not authenticated'
+        status: loginStatusTypes.Checking, // 'ckecking', 'authenticated' , 'not authenticated'
         uid: null,
         email: null,
         displayName: null,
@@ -17,7 +17,7 @@ export const authSlice = createSlice({
     },
     reducers: {
         login: (state, action) => {
-            state.status = loginStatusTypes.Authenticated;
+            state.status = loginStatusTypes.Checking;
             state.uid = action.payload.uid;
             state.email = action.payload.email;
             state.displayName = action.payload.displayName;

@@ -57,9 +57,7 @@ export const signInWidthEmailAndPassword = async({ email, password }) => {
 
     try {
         const result = await signInWithEmailAndPassword( FirebaseAuth, email, password );
-        console.log(result);
-        /*
-        const { displayName, email, photoURL, uid } = result.user;
+        const { displayName, photoURL, uid } = result.user;
         return {
             ok: true,
             displayName,
@@ -67,13 +65,15 @@ export const signInWidthEmailAndPassword = async({ email, password }) => {
             photoURL,
             uid
         }
-        */
     } 
     catch (error) {
+    
+        const errorMessage = ( error.code === 'auth/invalid-credential' ) 
+        ? 'Correo o contraseña incorrecta' : error.message;
         
         return {
             ok: false,
-            errorMessage: error.message
+            errorMessage
         }
     }
 }

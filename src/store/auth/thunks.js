@@ -48,14 +48,13 @@ export const startSignInWidthEmailAndPassword = ({ email, password }) => {
         
         dispatch( checkingCredentials() );
 
-        const result = await signInWidthEmailAndPassword({ email, password });      
-        /*
+        const result = await signInWidthEmailAndPassword({ email, password });
+            
         if( result.ok ) { 
             dispatch( login(result) );
         }
         else {
             dispatch( logout(result.errorMessage) );
         }
-        */
     }
 }
