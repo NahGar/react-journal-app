@@ -17,7 +17,7 @@ export const authSlice = createSlice({
     },
     reducers: {
         login: (state, action) => {
-            state.status = loginStatusTypes.Checking;
+            state.status = loginStatusTypes.Authenticated;
             state.uid = action.payload.uid;
             state.email = action.payload.email;
             state.displayName = action.payload.displayName;

@@ -1,7 +1,11 @@
+import { useSelector } from "react-redux";
 import { TurnedInNot } from "@mui/icons-material"
-import { Box, Divider, Drawer, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from "@mui/material"
+import { Box, Divider, Drawer, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Tooltip, Typography } from "@mui/material"
 
 export const SideBar = ({ drawerWidth = 240 }) => {
+
+    const { displayName, photoURL, email } = useSelector( state => state.auth );
+
     return (
         <Box
             component='nav'
@@ -17,7 +21,17 @@ export const SideBar = ({ drawerWidth = 240 }) => {
                 }}
             >
                 <Toolbar>
-                    <Typography variant="h6" noWrap component='div'>Pepe</Typography>
+                    <Tooltip title={ email }>
+                        <Typography variant="h6" noWrap component='div' sx={{ marginRight:'10px' }}>{ displayName }</Typography>
+                    </Tooltip>
+                    {
+                        photoURL ?
+                        <Box component='img' src={ photoURL } referrerPolicy="no-referrer"  
+                        sx={{ height: 30, width: 30 }}
+                        />
+                        : ''
+                    }
+                    
                 </Toolbar>
                 <Divider />
 

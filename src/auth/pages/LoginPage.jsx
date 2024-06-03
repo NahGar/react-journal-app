@@ -36,15 +36,16 @@ export const LoginPage = () => {
     return (
         <AuthLayout title='Login'>
 
-            <form onSubmit={ onSubmit }>
+            <form onSubmit={ onSubmit } className="animate__animated animate__fadeIn animate__faster">
                 <Grid container>
                     <Grid item xs={ 12 } sx={{ mt: 2 }}>
                         <TextField label="Correo" type="email" 
                         placeholder="correo@dominio.com"
                         fullWidth 
                         name='email' 
-                        value={ email }
+                        value={ email}
                         onChange={ onInputChange }
+                        InputLabelProps={{ shrink: true }}
                         />
                     </Grid>
                     <Grid item xs={ 12 } sx={{ mt: 2 }}>
@@ -54,6 +55,7 @@ export const LoginPage = () => {
                         name="password"
                         value={ password }
                         onChange={ onInputChange }
+                        InputLabelProps={{ shrink: true }}
                         />
                     </Grid>
                 </Grid>

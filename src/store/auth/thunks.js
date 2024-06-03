@@ -1,4 +1,4 @@
-import { registerUserWithEmailPassword, signInWidthEmailAndPassword, signInWidthGoogle } from "../../firebase/providers";
+import { logoutFirebase, registerUserWithEmailPassword, signInWidthEmailAndPassword, signInWidthGoogle } from "../../firebase/providers";
 import { checkingCredentials, login, logout } from "./";
 
 export const checkingAuthentication = ( email, password ) => {
@@ -56,5 +56,16 @@ export const startSignInWidthEmailAndPassword = ({ email, password }) => {
         else {
             dispatch( logout(result.errorMessage) );
         }
+    }
+}
+
+export const startLogoutFirebase = () => {
+
+    return async( dispatch ) => {
+        
+        await logoutFirebase();
+            
+        dispatch( logout() );
+        
     }
 }
