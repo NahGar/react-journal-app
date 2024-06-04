@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SaveOutlined } from "@mui/icons-material";
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import Swal from "sweetalert2";
+import 'sweetalert2/dist/sweetalert2.css';
 
 import { useForm } from "../../hooks/useForm";
 import { ImageGallery } from "../components";
