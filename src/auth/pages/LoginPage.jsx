@@ -8,6 +8,10 @@ import { useForm } from '../../hooks';
 import { startGoogleSignIn, startSignInWidthEmailAndPassword } from '../../store/auth';
 import { loginStatusTypes } from '../../types';
 
+const initialForm = {
+    email: '',
+    password: ''
+}
 
 export const LoginPage = () => {
     
@@ -15,10 +19,7 @@ export const LoginPage = () => {
 
     const dispatch = useDispatch();
 
-    const { email, password, onInputChange } = useForm({
-        email: '',
-        password: ''
-    });
+    const { email, password, onInputChange } = useForm(initialForm);
 
     const isAuthenticating = useMemo( () => status === loginStatusTypes.Checking, [status]);
 
