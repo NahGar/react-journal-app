@@ -43,8 +43,6 @@ export const journalSlice = createSlice({
         },
         noteUpdated: ( state, action ) => {
             
-            state.isSaving = false;
-
             /*
             let newNotes = [];
             state.notes.forEach( (note) => {
@@ -66,15 +64,27 @@ export const journalSlice = createSlice({
             });
 
             state.messageSaved = `La nota ha sido actualizada correctamente`;
+            state.isSaving = false;
         },
         deleteNoteById: ( state, action ) => {
-            
             state.notes.filter( (note) => { note.id !== action.payload } );
+            state.isSaving = false;
 
         },
+        setPhotosToActiveNote: ( state, action ) => {
+            // con ...state.active.imageUrls mantiene las urls existentes y agrega ...action.payload (pueden ser varias)
+            if(!state.active.imageUrls) {
+                state.active.imageUrls = [ ...action.payload ];
+            }
+            else {
+                state.active.imageUrls = [ ...state.active.imageUrls, ...action.payload ];
+            }
+            state.isSaving = false;
+        }
     },
 });
 
 // Action creators are generated for each case reducer function
 export const { 
-    savingNewNote, addNewEmptyNote, setActiveNote, setNotes, setSaving, noteUpdated, deleteNoteById } = journalSlice.actions;
+    savingNewNote, addNewEmptyNote, setActiveNote, setNotes, setSaving, 
+    noteUpdated, deleteNoteById, setPhotosToActiveNote } = journalSlice.actions;
