@@ -70,7 +70,8 @@ export const NoteView = () => {
             </Grid>
             <Grid item>
 
-                <input type="file" multiple ref={ fileInputRef } onChange={ onFileInputChange } style={{ display: 'none' }}/>
+                <input type="file" multiple ref={ fileInputRef } onChange={ onFileInputChange } 
+                    style={{ display: 'none' }}/>
 
                 <IconButton color="primary" 
                     disabled={ isSaving } 
@@ -80,7 +81,7 @@ export const NoteView = () => {
                 </IconButton>
 
                 <Button 
-                    disabled={ isSaving }
+                    disabled={ isSaving || !isFormValid }
                     onClick={ onSaveNote }
                     color='primary' sx={{ padding: 2 }}>
 
