@@ -67,9 +67,9 @@ export const journalSlice = createSlice({
             state.isSaving = false;
         },
         deleteNoteById: ( state, action ) => {
-            state.notes.filter( (note) => { note.id !== action.payload } );
-            state.isSaving = false;
-
+            state.active = null;
+            state.notes = state.notes.filter( (note) => note.id !== action.payload );
+            state.messageSaved = `La nota ha sido eliminada correctamente`;
         },
         setPhotosToActiveNote: ( state, action ) => {
             // con ...state.active.imageUrls mantiene las urls existentes y agrega ...action.payload (pueden ser varias)

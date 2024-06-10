@@ -1,14 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Note, SaveOutlined, UploadOutlined } from "@mui/icons-material";
+import { DeleteOutline, Note, SaveOutlined, UploadOutlined } from "@mui/icons-material";
 import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
 import Swal from "sweetalert2";
 import 'sweetalert2/dist/sweetalert2.css';
 
 import { useForm } from "../../hooks/useForm";
 import { ImageGallery } from "../components";
-import { setActiveNote, startSaveNote, startUploadingFiles } from "../../store/journal";
+import { setActiveNote, startDeletingNote, startSaveNote, startUploadingFiles } from "../../store/journal";
 
 const formValidations = {
     title: [ (value) => value.length >= 1, 'El título es obligatorio.'],
@@ -59,6 +59,11 @@ export const NoteView = () => {
         if( target.files === 0) return;
 
         dispatch ( startUploadingFiles( target.files ) );
+    }
+
+    const onDelete = () => {
+
+        dispatch ( startDeletingNote( { noteId: activeNote.id} ) );
     }
 
     return (
@@ -117,6 +122,12 @@ export const NoteView = () => {
                     error={ !!bodyValid /* && formSubmitted */ }
                     helperText={ bodyValid }
                 />
+            </Grid>
+
+            <Grid container justifyContent='end'>
+                <Button onClick={ onDelete } sx={{ mt: 2 }} color='error' disabled={ isSaving }>
+                    <DeleteOutline />Borrar
+                </Button>
             </Grid>
 
             <ImageGallery images={ activeNote.imageUrls } />
