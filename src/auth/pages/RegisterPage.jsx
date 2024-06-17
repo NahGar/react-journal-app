@@ -5,7 +5,7 @@ import { AuthLayout } from '../layout/AuthLayout';
 import { useForm } from '../../hooks';
 import { useMemo, useState } from 'react';
 import { startCreatingUserWithEmailPassword } from '../../store/auth';
-import { loginStatusTypes } from '../../types';
+import { loginStatusTypes } from '../../helpers/types';
 
 const formData = {
     displayName: '',

@@ -6,7 +6,7 @@ import { Alert, Button, Grid, Link, TextField, Typography } from "@mui/material"
 import { AuthLayout } from '../layout/AuthLayout';
 import { useForm } from '../../hooks';
 import { startGoogleSignIn, startSignInWidthEmailAndPassword } from '../../store/auth';
-import { loginStatusTypes } from '../../types';
+import { loginStatusTypes } from '../../helpers/types';
 
 const initialForm = {
     email: '',

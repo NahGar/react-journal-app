@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginStatusTypes } from '../../types';
+import { loginStatusTypes } from '../../helpers/types';
 
 const initialState = {
   value: 0,
@@ -30,7 +30,7 @@ export const authSlice = createSlice({
             state.email = null;
             state.displayName = null;
             state.photoURL = null;
-            state.errorMessage = action.payload;
+            state.errorMessage = action?.payload;
         },
         checkingCredentials: ( state ) => {
             state.status = loginStatusTypes.Checking;

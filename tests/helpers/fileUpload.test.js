@@ -14,7 +14,7 @@ describe('Pruebas en fileUpload', () => {
         
         const imageURL = 'https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png';
 
-        const resp = await fetch( imageURL );
+        let resp = await fetch( imageURL );
 
         const blob = await resp.blob();
 
@@ -27,7 +27,11 @@ describe('Pruebas en fileUpload', () => {
         const segments = url.split('/');
         const imageId = segments[ segments.length - 1].replace('.png','');
 
-        await cloudinary.api.delete_resources([ imageId ]);
+        //en el curso tuvo que incluir el nombre de la carpeta
+        //resp = await cloudinary.api.delete_resources([ 'journal/' + imageId ]);
+        resp = await cloudinary.api.delete_resources([ imageId ] , {
+            resource_type: 'image'
+        });
     });
 
     test('debe retornar null', async () => {
