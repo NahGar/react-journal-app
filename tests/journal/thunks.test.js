@@ -1,6 +1,7 @@
 import { collection, deleteDoc, getDocs } from "firebase/firestore/lite";
 import { FirebaseDB } from "../../src/firebase/config";
-import { addNewEmptyNote, savingNewNote, setActiveNote, startNewNote } from "../../src/store/journal";
+import { addNewEmptyNote, savingNewNote, setActiveNote, setNotes, startLoadingNotes, startNewNote } from "../../src/store/journal";
+import { loadNotes } from "../../src/helpers/loadNotes";
 
 describe('Pruebas en Journal Thunks', () => {
 
@@ -36,5 +37,24 @@ describe('Pruebas en Journal Thunks', () => {
         docs.forEach( doc => deletePromises.push( deleteDoc( doc.ref ) ));
 
         await Promise.all( deletePromises );
-    });
+    },10000);
+
+
+    test('startLoadingNotes debe cargar las notas', async() => {
+
+        const uid = 'TEST-UID';
+        getState.mockReturnValue({ auth: { uid } });
+ 
+        //Creamos una nueva nota a ese usuario
+        await startNewNote()(dispatch, getState);
+ 
+        //luego traemos las notas que tiene dicho usuario
+        const resp = await loadNotes(uid);
+ 
+        //Llamamos al thunk de journalSlice
+        await startLoadingNotes()(dispatch, getState);
+ 
+        expect(dispatch).toHaveBeenCalledWith(setNotes( resp ));
+
+    },10000);
 });
