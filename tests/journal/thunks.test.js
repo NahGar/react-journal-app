@@ -1,6 +1,6 @@
 import { collection, deleteDoc, getDocs } from "firebase/firestore/lite";
 import { FirebaseDB } from "../../src/firebase/config";
-import { addNewEmptyNote, savingNewNote, setActiveNote, setNotes, startLoadingNotes, startNewNote } from "../../src/store/journal";
+import { addNewEmptyNote, journalSlice, noteUpdated, savingNewNote, setActiveNote, setNotes, setSaving, startLoadingNotes, startNewNote, startSaveNote } from "../../src/store/journal";
 import { loadNotes } from "../../src/helpers/loadNotes";
 
 describe('Pruebas en Journal Thunks', () => {
@@ -55,6 +55,60 @@ describe('Pruebas en Journal Thunks', () => {
         await startLoadingNotes()(dispatch, getState);
  
         expect(dispatch).toHaveBeenCalledWith(setNotes( resp ));
+
+    },10000);
+
+    test('startSaveNote debe llamar noteUpdated', async() => {
+
+        const uid = 'TEST-UID';
+        const activeNote = { id: 'ABC123',
+            title: '',
+            body: '',
+            date: 1234567,
+            imageUrls: []
+        }
+        const mockState = {
+            auth: {
+                uid
+            },
+            journal: {
+                active: activeNote
+            }
+        }
+        getState.mockReturnValue( mockState );
+         
+        await startSaveNote()(dispatch, getState);
+ 
+        expect(dispatch).toHaveBeenCalledWith(setSaving());
+
+        expect(dispatch).toHaveBeenCalledWith(noteUpdated( activeNote ));
+
+    },10000);
+
+    test('startDeletingNote debe llamar noteUpdated', async() => {
+
+        const uid = 'TEST-UID';
+        const activeNote = { id: 'ABC123',
+            title: '',
+            body: '',
+            date: 1234567,
+            imageUrls: []
+        }
+        const mockState = {
+            auth: {
+                uid
+            },
+            journal: {
+                active: activeNote
+            }
+        }
+        getState.mockReturnValue( mockState );
+         
+        await startSaveNote()(dispatch, getState);
+ 
+        expect(dispatch).toHaveBeenCalledWith(setSaving());
+
+        expect(dispatch).toHaveBeenCalledWith(noteUpdated( activeNote ));
 
     },10000);
 });
