@@ -2,7 +2,7 @@
 //import { configureStore } from "@reduxjs/toolkit";
 //import { MemoryRouter } from "react-router-dom";
 //import { authSlice } from "../../../src/store/auth";
-//import { render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import { LoginPage } from "../../../src/auth/pages/LoginPage";
 
