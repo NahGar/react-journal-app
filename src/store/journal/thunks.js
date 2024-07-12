@@ -56,6 +56,10 @@ export const startSaveNote = () => {
         dispatch ( setSaving() );
         
         const { uid } = getState().auth;
+
+        console.log(getState());
+        console.log(getState().journal);
+
         const { active: note } = getState().journal;
 
         //elimina el id del objeto para Firestore
