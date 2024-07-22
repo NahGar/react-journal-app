@@ -12,6 +12,8 @@ export const startNewNote = () => {
         dispatch( savingNewNote() );
 
         const { uid } = getState().auth;
+        
+        if( !uid ) throw new Error('El UId del usuario no existe');
 
         const newNote = {
             title: '',
@@ -38,7 +40,7 @@ export const startLoadingNotes = () => {
     return async( dispatch, getState ) => {
 
         const { uid } = getState().auth;
-
+        
         if( !uid ) throw new Error('El UId del usuario no existe');
 
         const notes = await loadNotes( uid );

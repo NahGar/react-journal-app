@@ -12,7 +12,7 @@ describe('Pruebas en Journal Thunks', () => {
 
     test('startNewNote debe crear una nueva nota en blanco', async() => {
 
-        getState.mockReturnValue({ auth: { uid: 'TEST-UID' } })
+        getState.mockReturnValue({ auth: { uid: 'TEST-UID' } });
         await startNewNote()( dispatch, getState );
 
         expect( dispatch ).toHaveBeenCalledWith( savingNewNote() );
